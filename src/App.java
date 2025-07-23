@@ -1,19 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import SinglyLinkedList.SinglyLinkedList;
+import SinglyLinkedList.SinglyLinkedListNode;
+
 public class App {
     public static void main(String[] args) {
-        Node<Integer> head = new Node<>(1);
-        head.next = new Node<>(2);
-        head.next.next = new Node<>(3);
-        head.next.next.next = new Node<>(5);
-        head.next.next.next.next = new Node<>(4);
-        head.next.next.next.next.next = new Node<>(1);
-        System.out.println(head.toString());
-        // head = rRemove(head);
-        head = aAdd(head);
-        System.out.println(head.toString());
-
+        SinglyLinkedListNode<Integer> head = new SinglyLinkedListNode(1);
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        // System.out.println(list.size());
+        list.addToFront(4);
+        list.addToFront(12);
+        // System.out.println(list.getHead().getData());
+        // System.out.println(list.getTail().getData());
+        list.removeFromFront();
+        System.out.println("TAIL: " + list.getTail().getData());
+        System.out.println("HEAD: " + list.getHead().getData());
     }   
 
     public static void recursiveMethod(int n) {
