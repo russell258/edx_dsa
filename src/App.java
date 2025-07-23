@@ -5,13 +5,15 @@ public class App {
     public static void main(String[] args) {
         Node<Integer> head = new Node<>(1);
         head.next = new Node<>(2);
-        head.next.next = new Node<>(2);
-        head.next.next.next = new Node<>(2);
+        head.next.next = new Node<>(3);
+        head.next.next.next = new Node<>(5);
         head.next.next.next.next = new Node<>(4);
         head.next.next.next.next.next = new Node<>(1);
         System.out.println(head.toString());
-        head = rRemove(head);
+        // head = rRemove(head);
+        head = aAdd(head);
         System.out.println(head.toString());
+
     }   
 
     public static void recursiveMethod(int n) {
@@ -37,7 +39,17 @@ public class App {
         return curr;
     }
 
-
+    // adding duplicate node adjacent to each node in the LinkedList
+    public static <T> Node<T> aAdd(Node<T> curr) {
+    if (curr == null) {
+        return null;
+    } else {
+        Node<T> temp = new Node<>(curr.data);
+        temp.next = curr;
+        curr.next = aAdd(curr.next);
+        return temp;
+    }
+}
 
 
 }
