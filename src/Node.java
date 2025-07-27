@@ -2,6 +2,7 @@
 public class Node<T> {
     T data; //stores the value
     Node<T> next; //reference to the next node
+    Node<T> prev; //reference to the previous node
 
     public Node(T data) {
         this.data = data;

@@ -1,40 +1,37 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
+import ArrayQueue.ArrayQueue.ArrayQueue;
 import SinglyLinkedList.SinglyLinkedList;
 import SinglyLinkedList.SinglyLinkedListNode;
-import ArrayBackedQueue.ArrayQueue;
 
 public class App {
     public static void main(String[] args) {
-        ArrayQueue<Integer> queue = new ArrayQueue<>();
-
-        // Test enqueue and size
-        queue.enqueue(10);
-        queue.enqueue(20);
-        queue.enqueue(30);
-        System.out.println(queue.size()); // Expected: 3
+        List<String> ll = new ArrayList<>();
+        ll.add("NYM");
+        ll.add("NYY"); 
+        ll.add("BOS");
+        ll.add(3,"TAM");
+        System.out.println(ll.toString());
+    }
     
-        // Test dequeue
-        System.out.println(queue.dequeue()); // Expected: 10
-        System.out.println(queue.dequeue()); // Expected: 20
-        System.out.println(queue.size());    // Expected: 1
-    
-        // Test wrap-around behavior
-        for (int i = 0; i < 10; i++) {
-            queue.enqueue(i + 100); // This should trigger resize at some point
+    public static void mystery(Node cur){
+        if (cur==null){
+            System.out.println("CS 1332 is cool!");
+            return;
         }
-    
-        System.out.println(queue.size()); // Expected: 11 (1 remaining + 10 added)
-        System.out.println(queue.dequeue()); // Expected: 30 (last from before loop)
-    
-        // Print all remaining items
-        while (queue.size() > 0) {
-            System.out.print(queue.dequeue() + " "); // Should print 100 to 109
+        if (cur.next!=null && ((String) cur.data).length()>5){
+            mystery(cur.next.next);
+            System.out.println(((String) cur.data).length());
+        }else if (((String) cur.data).length()%2 == 0){
+            System.out.println(cur.data);
+            mystery(cur.next);
         }
-    
-        System.out.println();
-    }   
+    }
 
     public static void recursiveMethod(int n) {
         if (n <= 0) {
