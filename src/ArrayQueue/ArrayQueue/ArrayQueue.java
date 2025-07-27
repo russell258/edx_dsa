@@ -1,4 +1,4 @@
-package ArrayBackedQueue;
+package ArrayQueue.ArrayQueue;
 
 import java.util.NoSuchElementException;
 
