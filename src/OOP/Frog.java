@@ -85,6 +85,8 @@ public class Frog {
                 months--;    
             }
         }
+        if (this.age > 1 && this.age<7) this.isFroglet = true;
+        else this.isFroglet = false;
     }
 
     public void grow(){
@@ -98,6 +100,8 @@ public class Frog {
                 this.setTongueSpeed(this.getTongueSpeed()-1);
             }
         }
+        if (this.age > 1 && this.age<7) this.isFroglet = true;
+        else this.isFroglet = false;
     }
 
     public void eat(Fly fly){
