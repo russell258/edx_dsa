@@ -80,7 +80,7 @@ public class ExternalChainingHashMap<K, V> {
         if (loadFactor > MAX_LOAD_FACTOR) {
             resizeBackingTable((2 * table.length) + 1);
         }
-        int index = (key.hashCode() & 0x7fffffff) % table.length;
+        int index = Math.abs(key.hashCode() % table.length);
         ExternalChainingMapEntry<K, V> current = table[index];
         while (current != null) {
             if (current.getKey().equals(key)) {
@@ -109,7 +109,7 @@ public class ExternalChainingHashMap<K, V> {
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
-        int index = (key.hashCode() & 0x7fffffff) % table.length;
+        int index = Math.abs(key.hashCode() % table.length);
         ExternalChainingMapEntry<K, V> current = table[index];
         ExternalChainingMapEntry<K, V> previous = null;
         while (current !=null) {
@@ -160,7 +160,7 @@ public class ExternalChainingHashMap<K, V> {
             while (current != null) {
                 K key = current.getKey();
                 V value =current.getValue();
-                int newIndex = (key.hashCode() & 0x7fffffff) % length;
+                int newIndex = Math.abs(key.hashCode() % length);
                 ExternalChainingMapEntry<K, V> newEntry =
                         new ExternalChainingMapEntry<>(key, value, null);
                 if (newTable[newIndex] == null) {
