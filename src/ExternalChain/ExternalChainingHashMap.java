@@ -96,6 +96,21 @@ public class ExternalChainingHashMap<K, V> {
         return null;
     }
 
+    public boolean containsKey(K key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+        int index = Math.abs(key.hashCode() % table.length);
+        ExternalChainingMapEntry<K, V> current = table[index];
+        while (current != null) {
+            if (current.getKey().equals(key)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
+
     /**
      * Removes the entry with a matching key from the map.
      *

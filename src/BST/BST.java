@@ -13,6 +13,45 @@ public class BST<T extends Comparable<? super T>> {
     private BSTNode<T> root;
     private int size;
 
+         /**
+     * Returns the data from the tree matching the given parameter.
+     *
+     * This should be done recursively.
+     *
+     * Do not return the same data that was passed in. Return the data that
+     * was stored in the tree.
+     *
+     * Hint: Should you use value equality or reference equality?
+     *
+     * Must be O(log n) for best and average cases and O(n) for worst case.
+     *
+     * @param data The data to search for. You may assume data is never null.
+     * @return The data in the tree equal to the parameter.
+     * @throws java.util.NoSuchElementException If the data is not in the tree.
+     */
+    public T get(T data) {
+        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        if (root == null) {
+            throw new NoSuchElementException("Data not found in tree");
+        }
+        return getNode(root, data);
+    }
+
+    private T getNode(BSTNode<T> root, T data) {
+        if (root == null) {
+            throw new NoSuchElementException("Data not found in tree");
+        }
+        if (data.compareTo(root.getData()) == 0) {
+            return root.getData();
+        } else if (data.compareTo(root.getData()) < 0) {
+            // go left
+            return getNode(root.getLeft(), data);
+        } else {
+            // go right
+            return getNode(root.getRight(), data);
+        }
+    }
+
     /*
      * Do not add a constructor.
      */
@@ -97,7 +136,7 @@ public class BST<T extends Comparable<? super T>> {
     }
 
     private BSTNode<T> removeNode(BSTNode<T> root, T data, RemovedData<T> removed) {
-        if (root == null) throw new NoSuchElementException("Data not found in tree");
+        if (root == null) return null;
         if (data.compareTo(root.getData()) < 0) {
             // go left
             root.setLeft(removeNode(root.getLeft(), data, removed));
@@ -119,9 +158,10 @@ public class BST<T extends Comparable<? super T>> {
             } else {
                 // case 3: two children
                 T originalData = root.getData();
-                BSTNode<T> successor = findSuccessor(root.getRight());
-                root.setData(successor.getData());
-                root.setRight(removeNode(root.getRight(), successor.getData(), new RemovedData<T>()));
+                  BSTNode<T> predecessor = findPredecessor(root.getLeft());
+                root.setData(predecessor.getData());
+                // remove predecessor from left subtree (use fresh RemovedData so removed.data isn't overwritten)
+                root.setLeft(removeNode(root.getLeft(), predecessor.getData(), new RemovedData<T>()));
                 removed.data = originalData;
             }
         }else{
@@ -135,9 +175,9 @@ public class BST<T extends Comparable<? super T>> {
         T data;
     }
 
-    private BSTNode<T> findSuccessor(BSTNode<T> node) {
-        while (node.getLeft() != null) {
-            node = node.getLeft();
+    private BSTNode<T> findPredecessor(BSTNode<T> node) {
+        while (node.getRight() != null) {
+            node = node.getRight();
         }
         return node;
     }
