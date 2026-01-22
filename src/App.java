@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,12 +12,14 @@ import SinglyLinkedList.SinglyLinkedListNode;
 
 public class App {
     public static void main(String[] args) {
-        List<String> ll = new ArrayList<>();
-        ll.add("NYM");
-        ll.add("NYY"); 
-        ll.add("BOS");
-        ll.add(3,"TAM");
-        System.out.println(ll.toString());
+
+String funnyStr = "south, long island";
+funnyStr.replace("!"," ");
+funnyStr.replace("the beach","");
+funnyStr.replace(", long", "");
+funnyStr.replace("wal","roc");
+funnyStr.toUpperCase();
+System.out.println(funnyStr);
     }
     
     public static void mystery(Node cur){

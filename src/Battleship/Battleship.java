@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Battleship {
 	public static void main(String[] args) {
+		/**
+		 * 
+		 */
 		// Initialize 5x5 boards
 		final int BOARD_SIZE = 5;
 		char[][] player1LocationBoard = new char[BOARD_SIZE][BOARD_SIZE];
